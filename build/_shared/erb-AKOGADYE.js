@@ -1,1 +1,1 @@
-import{a}from"qml-challenge-scorer//build/_shared/chunk-QMEMAHXE.js";import"qml-challenge-scorer//build/_shared/chunk-3MZURCDM.js";import"qml-challenge-scorer//build/_shared/chunk-5JQ5LNKE.js";import"qml-challenge-scorer//build/_shared/chunk-2NH4LW52.js";export default a();
+import{a}from"/qml-challenge-scorer/build/_shared/chunk-QMEMAHXE.js";import"/qml-challenge-scorer/build/_shared/chunk-3MZURCDM.js";import"/qml-challenge-scorer/build/_shared/chunk-5JQ5LNKE.js";import"/qml-challenge-scorer/build/_shared/chunk-2NH4LW52.js";export default a();

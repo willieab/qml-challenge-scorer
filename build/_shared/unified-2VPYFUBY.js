@@ -1,1 +1,1 @@
-import{b as a}from"qml-challenge-scorer//build/_shared/chunk-XZYL5ND2.js";import"qml-challenge-scorer//build/_shared/chunk-J6FHCSRC.js";import"qml-challenge-scorer//build/_shared/chunk-2NH4LW52.js";export{a as unified};
+import{b as a}from"/qml-challenge-scorer/build/_shared/chunk-XZYL5ND2.js";import"/qml-challenge-scorer/build/_shared/chunk-J6FHCSRC.js";import"/qml-challenge-scorer/build/_shared/chunk-2NH4LW52.js";export{a as unified};
