@@ -1,0 +1,75 @@
+name: Score submission
+on:
+  repository_dispatch:
+    types: [score-submission]
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'
+
+      - name: Checkout this repo
+        uses: actions/checkout@v3
+
+      - name: Checkout submission repo
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.TRIGGER_KEY }}
+          repository: willieab/ionq-skku-vision-challenge
+          ref: ${{ github.event.client_payload.ref }}
+          sparse-checkout: trained_models
+          path: './submission'
+      - run: echo ${{ github.event.client_payload.submission }}
+      - run: tree
+
+      - uses: actions/cache@v4
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ env.pythonLocation }}-${{ hashFiles('ionqvision/requirements.txt') }}-${{ hashFiles('site/requirements.txt') }}
+
+      - if: steps.cache.outputs.cache-hit != 'true'
+        name: Install dependencies
+        run: |
+          pip install --upgrade --upgrade-strategy eager -e ionqvision
+          pip install -r site/requirements.txt
+
+      - name: Run score submission script
+        run: |
+          python scripts/score_submission.py ${{ github.event.client_payload.submission }} --submission_repo submission
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Install MyST Markdown
+        run: npm install -g mystmd
+
+      - name: Build site
+        run: |
+          cd site
+          myst build --html
+          cd ..
+
+      - uses: actions/configure-pages@v3
+
+      - name: Deploy site to GH
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: site/_build/html
+
+      - name: Deploy docs
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: site/ionqvision-docs
+          destination_dir: ionqvision-docs
+

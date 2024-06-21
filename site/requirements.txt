@@ -1,0 +1,6 @@
+gitpython
+ipykernel
+nbconvert
+pandas
+pylatexenc
+torch

@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{quantikz}
+\usepackage{physics}
+
+\definecolor{ionq_orange}{RGB}{255,80,0}
+
+\begin{document}
+\begin{quantikz}[row sep={0.6cm,between origins}]
+    \lstick{} & \gate[3,disable auto height]{Encoder} \slice[style=ionq_orange]{Load} & \gate[3, disable auto height]{Ansatz} \slice[style=ionq_orange]{Learn} & \meter{} \slice[style=ionq_orange]{Extract} & \phantomgate{}  \rstick{$H_1$}  \\
+    \lstick{} & \phantomgate{} & \phantomgate{} & \meter{} &\phantomgate{}  \rstick{$H_2$} \\
+    \lstick{} & \phantomgate{} & \phantomgate{} & \meter{} & \phantomgate{} \rstick{$H_3$} \\
+    \lstick{} & \phantomgate{} & \phantomgate{} & \meter{} & \phantomgate{} \rstick{$H_4$} 
+\end{quantikz}
+\end{document}

@@ -1,0 +1,32 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  title: Zero or one?
+  description: An image classification challenge using hybrid quantum-classical neural networks
+  authors: 
+    - Willie Aboumrad
+    - Sang Kim  
+
+  github: https://github.com/ionq-applications/ionq-vision-challenge
+  copyright: IonQ, Inc (2024)
+  banner: media/forte_header.png
+  subject: Quantum Vision Challenge
+  venue:
+    title: IonQ-SKKU Hackathon
+  exclude: media/**
+  exports:
+  - format: typst
+    template: lapreprint-typst
+    output: exports/my-document.pdf
+
+site:
+  template: book-theme
+  options:
+    logo: media/logo.png
+    logo_dark: media/logo_dark.png
+    favicon: media/logo.png
+  actions:
+    - title: IonQ Vision Docs
+      url: https://refactored-adventure-228m4r2.pages.github.io/ionqvision-docs
+    - title: IonQ Cloud
+      url: https://cloud.ionq.com

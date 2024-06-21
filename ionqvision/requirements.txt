@@ -1,0 +1,13 @@
+gitpython
+matplotlib
+numpy
+scipy
+sympy
+
+torch>2.0
+torchvision
+
+qiskit>1.0
+qiskit_aer
+qiskit_ionq==0.5.1
+pylatexenc
