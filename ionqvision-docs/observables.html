@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Quantum Functions" href="quantum_functions.html" /><link rel="prev" title="Variational Ansatze" href="ansatze.html" />
 
     <!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
-        <title>Qubit observables - IonQ Vision documentation</title>
+        <title>Qubit observables - IonQ Vision latest documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=387cc868" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
@@ -179,7 +179,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">IonQ Vision  documentation</div></a>
+      <a href="index.html"><div class="brand">IonQ Vision latest documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -203,7 +203,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">IonQ Vision  documentation</span>
+  <span class="sidebar-brand-text">IonQ Vision latest documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -260,72 +260,8 @@
         <article role="main" id="furo-main-content">
           <section id="qubit-observables">
 <h1>Qubit observables<a class="headerlink" href="#qubit-observables" title="Link to this heading">¶</a></h1>
-<section id="module-ionqvision.quantum_functions.hamiltonian_energy">
-<span id="hamiltonian-energy-with-respect-to-a-variational-ansatz"></span><h2>Hamiltonian energy with respect to a variational ansatz<a class="headerlink" href="#module-ionqvision.quantum_functions.hamiltonian_energy" title="Link to this heading">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ionqvision.quantum_functions.hamiltonian_energy.</span></span><span class="sig-name descname"><span class="pre">HamiltonianEnergy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hamiltonian</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ansatz</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/quantum_functions/hamiltonian_energy.html#HamiltonianEnergy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="quantum_functions.html#ionqvision.quantum_function_category.quantum_function.QuantumFunction" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumFunction</span></code></a></p>
-<p>Module for computing the expected energy of a <code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> with respect
-to a variational <code class="docutils literal notranslate"><span class="pre">ansatz</span></code>.</p>
-<p>Precisely, <code class="xref py py-meth docutils literal notranslate"><span class="pre">fun()</span></code> evaluates the expected value
-<div class="math-wrapper docutils container">
-<div class="math notranslate nohighlight">
-\[
-E(\theta) = \langle \psi(\theta) \vert H \vert \psi(\theta) \rangle,
-\]</div>
-</div>
-
-with <span class="math notranslate nohighlight">\(H\)</span> denoting the <code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> and <span class="math notranslate nohighlight">\(\vert \psi(\theta) \rangle\)</span>
-denoting the <code class="docutils literal notranslate"><span class="pre">ansatz</span></code>.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> may be specified in two ways. If <code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> is a
-Qiskit <code class="xref py py-class docutils literal notranslate"><span class="pre">SparsePauliOp</span></code> the Hamiltonian is split into qubit-wise
-commuting term groups and this module imputes an appropriate Pauli
-measurement basis for each term group.</p>
-<p>Alternatively, the <code class="docutils literal notranslate"><span class="pre">hamiltonian</span></code> may be specified as a list of tuples
-<code class="docutils literal notranslate"><span class="pre">(comm_term,</span> <span class="pre">measurement_qc)</span></code> where each <code class="docutils literal notranslate"><span class="pre">comm_term</span></code> is a
-<code class="xref py py-class docutils literal notranslate"><span class="pre">SparsePauliOp</span></code> describing a group of commuting terms and
-<code class="docutils literal notranslate"><span class="pre">measurement_qc</span></code> is a <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumCircuit</span></code> implementing a unitary
-transformation that diagonalizes the corresponding <code class="docutils literal notranslate"><span class="pre">comm_term</span></code>.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">ansatz</span></code> should be a 
-<a class="reference internal" href="ansatze.html#ionqvision.ansatze.variational_ansatz.VariationalAnsatz" title="ionqvision.ansatze.variational_ansatz.VariationalAnsatz"><code class="xref py py-class docutils literal notranslate"><span class="pre">VariationalAnsatz</span></code></a> instance, as these
-objects keep track of the information needed to compute the gradient of the
-expected energy with respect to the variational parameters.</p>
-<dl class="py property">
-<dt class="sig sig-object py" id="ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy.commuting_term_groups">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">commuting_term_groups</span></span><a class="headerlink" href="#ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy.commuting_term_groups" title="Link to this definition">¶</a></dt>
-<dd><p>Get a list of <code class="docutils literal notranslate"><span class="pre">(commuting_term_group,</span> <span class="pre">measurement_basis)</span></code> describing
-<code class="docutils literal notranslate"><span class="pre">self.hamiltonian</span></code>.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy.group_metadata">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">group_metadata</span></span><a class="headerlink" href="#ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy.group_metadata" title="Link to this definition">¶</a></dt>
-<dd><p>Get a list of metadata dictionaries corresponding to each Ising-like
-term in <a class="reference internal" href="#ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy.ising_like_energies" title="ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy.ising_like_energies"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ising_like_energies()</span></code></a>.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy.hamiltonian">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hamiltonian</span></span><a class="headerlink" href="#ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy.hamiltonian" title="Link to this definition">¶</a></dt>
-<dd><p>Get the Hamiltonian whose energy <code class="docutils literal notranslate"><span class="pre">self</span></code> evaluates.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy.ising_like_energies">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ising_like_energies</span></span><a class="headerlink" href="#ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy.ising_like_energies" title="Link to this definition">¶</a></dt>
-<dd><p>Get the list of <code class="xref py py-class docutils literal notranslate"><span class="pre">IsingEnergy</span></code> objects used to evaluate the
-energy of <code class="docutils literal notranslate"><span class="pre">self.hamiltonian</span></code>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy.set_param_order">
-<span class="sig-name descname"><span class="pre">set_param_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/quantum_functions/hamiltonian_energy.html#HamiltonianEnergy.set_param_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy.set_param_order" title="Link to this definition">¶</a></dt>
-<dd><p>Set the order in which parameter lists should be interpreted.</p>
-</dd></dl>
-
-</dd></dl>
-
+<section id="hamiltonian-energy-with-respect-to-a-variational-ansatz">
+<h2>Hamiltonian energy with respect to a variational ansatz<a class="headerlink" href="#hamiltonian-energy-with-respect-to-a-variational-ansatz" title="Link to this heading">¶</a></h2>
 </section>
 </section>
 
@@ -385,17 +321,7 @@ energy of <code class="docutils literal notranslate"><span class="pre">self.hami
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Qubit observables</a><ul>
-<li><a class="reference internal" href="#module-ionqvision.quantum_functions.hamiltonian_energy">Hamiltonian energy with respect to a variational ansatz</a><ul>
-<li><a class="reference internal" href="#ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy"><code class="docutils literal notranslate"><span class="pre">HamiltonianEnergy</span></code></a><ul>
-<li><a class="reference internal" href="#ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy.commuting_term_groups"><code class="docutils literal notranslate"><span class="pre">HamiltonianEnergy.commuting_term_groups</span></code></a></li>
-<li><a class="reference internal" href="#ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy.group_metadata"><code class="docutils literal notranslate"><span class="pre">HamiltonianEnergy.group_metadata</span></code></a></li>
-<li><a class="reference internal" href="#ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy.hamiltonian"><code class="docutils literal notranslate"><span class="pre">HamiltonianEnergy.hamiltonian</span></code></a></li>
-<li><a class="reference internal" href="#ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy.ising_like_energies"><code class="docutils literal notranslate"><span class="pre">HamiltonianEnergy.ising_like_energies</span></code></a></li>
-<li><a class="reference internal" href="#ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy.set_param_order"><code class="docutils literal notranslate"><span class="pre">HamiltonianEnergy.set_param_order()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a class="reference internal" href="#hamiltonian-energy-with-respect-to-a-variational-ansatz">Hamiltonian energy with respect to a variational ansatz</a></li>
 </ul>
 </li>
 </ul>
@@ -407,12 +333,9 @@ energy of <code class="docutils literal notranslate"><span class="pre">self.hami
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
+</div><script src="_static/documentation_options.js?v=c6e86fd7"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=4e2eecee"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]]}})</script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]]}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>

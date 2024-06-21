@@ -11,7 +11,7 @@ Classifier
 Quantum module
 --------------
 
-This module implements the `"quantum layer" <https://refactored-adventure-228m4r2.pages.github.io/challenge-description#quantum-layer>`_ in our hybrid classification pipeline.
+This module implements the `"quantum layer" <https://willieab.github.io/qml-challenge-scorer/challenge-description#quantum-layer>`_ in our hybrid classification pipeline.
 
 .. autoclass:: ionqvision.modules.quantum_module.QuantumModule
    :members:

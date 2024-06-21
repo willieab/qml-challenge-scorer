@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Variational Ansatze" href="ansatze.html" /><link rel="prev" title="Welcome to IonQ’s package for hybrid neural networks!" href="index.html" />
 
     <!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
-        <title>Quantum-classical PyTorch modules - IonQ Vision documentation</title>
+        <title>Quantum-classical PyTorch modules - IonQ Vision latest documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=387cc868" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
@@ -179,7 +179,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">IonQ Vision  documentation</div></a>
+      <a href="index.html"><div class="brand">IonQ Vision latest documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -203,7 +203,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">IonQ Vision  documentation</span>
+  <span class="sidebar-brand-text">IonQ Vision latest documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -260,146 +260,16 @@
         <article role="main" id="furo-main-content">
           <section id="quantum-classical-pytorch-modules">
 <h1>Quantum-classical PyTorch modules<a class="headerlink" href="#quantum-classical-pytorch-modules" title="Link to this heading">¶</a></h1>
-<section id="module-ionqvision.modules.binary_classifier">
-<span id="classifier"></span><h2>Classifier<a class="headerlink" href="#module-ionqvision.modules.binary_classifier" title="Link to this heading">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="ionqvision.modules.binary_classifier.BinaryMNISTClassifier">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ionqvision.modules.binary_classifier.</span></span><span class="sig-name descname"><span class="pre">BinaryMNISTClassifier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ansatze.html#ionqvision.ansatze.variational_ansatz.VariationalAnsatz" title="ionqvision.ansatze.variational_ansatz.VariationalAnsatz"><span class="pre">VariationalAnsatz</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">trainable_ansatz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ansatze.html#ionqvision.ansatze.variational_ansatz.VariationalAnsatz" title="ionqvision.ansatze.variational_ansatz.VariationalAnsatz"><span class="pre">VariationalAnsatz</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">SparsePauliOp</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout_prob</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/modules/binary_classifier.html#BinaryMNISTClassifier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.modules.binary_classifier.BinaryMNISTClassifier" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#ionqvision.modules.trainable_module.TrainableModule" title="ionqvision.modules.trainable_module.TrainableModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">TrainableModule</span></code></a></p>
-<p>A hybrid quantum-classical classifier for distinguishing between two types
-of handwritten digits in the MNIST database.</p>
-<p>The model architecture is detailed in the challenge description.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="ionqvision.modules.binary_classifier.BinaryMNISTClassifier.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/modules/binary_classifier.html#BinaryMNISTClassifier.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.modules.binary_classifier.BinaryMNISTClassifier.forward" title="Link to this definition">¶</a></dt>
-<dd><p>Define the computation performed at every call.</p>
-<p>Should be overridden by all subclasses.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Although the recipe for forward pass needs to be defined within
-this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
-instead of this since the former takes care of running the
-registered hooks while the latter silently ignores them.</p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ionqvision.modules.binary_classifier.BinaryMNISTClassifier.get_train_test_set">
-<span class="sig-name descname"><span class="pre">get_train_test_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/modules/binary_classifier.html#BinaryMNISTClassifier.get_train_test_set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.modules.binary_classifier.BinaryMNISTClassifier.get_train_test_set" title="Link to this definition">¶</a></dt>
-<dd><p>Get sample sets of 0-1 MNIST images of size <cite>train_size</cite> and
-<cite>test_size</cite> for training and testing your model.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ionqvision.modules.binary_classifier.BinaryMNISTClassifier.load_binary_mnist">
-<span class="sig-name descname"><span class="pre">load_binary_mnist</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/modules/binary_classifier.html#BinaryMNISTClassifier.load_binary_mnist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.modules.binary_classifier.BinaryMNISTClassifier.load_binary_mnist" title="Link to this definition">¶</a></dt>
-<dd><p>Load all <code class="docutils literal notranslate"><span class="pre">DIGIT1</span></code> and <code class="docutils literal notranslate"><span class="pre">DIGIT2</span></code> images of the MNIST dataset.</p>
-<p>OUTPUT:</p>
-<blockquote>
-<div><p>A dictionary with keys <cite>“train”</cite> and <cite>“test”</cite> mapping to
-corresponding <cite>torchvision.datasets</cite> objects.</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ionqvision.modules.binary_classifier.BinaryMNISTClassifier.save_model">
-<span class="sig-name descname"><span class="pre">save_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_repo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/modules/binary_classifier.html#BinaryMNISTClassifier.save_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.modules.binary_classifier.BinaryMNISTClassifier.save_model" title="Link to this definition">¶</a></dt>
-<dd><p>Serialize <cite>self</cite> and save ZIP archive to <cite>path</cite>.</p>
-<p>When no <cite>path</cite> is provided, the file name is generated automatically
-using the current commit’s hash value.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ionqvision.modules.binary_classifier.BinaryMNISTClassifier.submit_model_for_grading">
-<span class="sig-name descname"><span class="pre">submit_model_for_grading</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_repo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/modules/binary_classifier.html#BinaryMNISTClassifier.submit_model_for_grading"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.modules.binary_classifier.BinaryMNISTClassifier.submit_model_for_grading" title="Link to this definition">¶</a></dt>
-<dd><p>Submit <cite>self</cite> for grading.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ionqvision.modules.binary_classifier.BinaryMNISTClassifier.visualize_batch">
-<span class="sig-name descname"><span class="pre">visualize_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/modules/binary_classifier.html#BinaryMNISTClassifier.visualize_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.modules.binary_classifier.BinaryMNISTClassifier.visualize_batch" title="Link to this definition">¶</a></dt>
-<dd><p>Visualize a batch of images using PyPlot.</p>
-<p>If no <cite>batch</cite> is given, generate a random batch of 20 training images.</p>
-</dd></dl>
-
-</dd></dl>
-
+<section id="classifier">
+<h2>Classifier<a class="headerlink" href="#classifier" title="Link to this heading">¶</a></h2>
 </section>
 <section id="quantum-module">
 <h2>Quantum module<a class="headerlink" href="#quantum-module" title="Link to this heading">¶</a></h2>
-<p>This module implements the <a class="reference external" href="https://refactored-adventure-228m4r2.pages.github.io/challenge-description#quantum-layer">“quantum layer”</a> in our hybrid classification pipeline.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="ionqvision.modules.quantum_module.QuantumModule">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ionqvision.modules.quantum_module.</span></span><span class="sig-name descname"><span class="pre">QuantumModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">encoder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trainable_ansatz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shots</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/modules/quantum_module.html#QuantumModule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.modules.quantum_module.QuantumModule" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
-<p>A PyTorch <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> that implements the execution of any
-<code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumObjective</span></code> using the <code class="docutils literal notranslate"><span class="pre">autograd</span></code> engine.</p>
-<p>This allows the <code class="docutils literal notranslate"><span class="pre">autograd</span></code> engine to automatically differentiate
-the quantum objective using the parameter-shift rule.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="ionqvision.modules.quantum_module.QuantumModule.forward">
-<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/modules/quantum_module.html#QuantumModule.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.modules.quantum_module.QuantumModule.forward" title="Link to this definition">¶</a></dt>
-<dd><p>Define the computation performed at every call.</p>
-<p>Should be overridden by all subclasses.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Although the recipe for forward pass needs to be defined within
-this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
-instead of this since the former takes care of running the
-registered hooks while the latter silently ignores them.</p>
-</div>
-</dd></dl>
-
-</dd></dl>
-
+<p>This module implements the <a class="reference external" href="https://willieab.github.io/qml-challenge-scorer/challenge-description#quantum-layer">“quantum layer”</a> in our hybrid classification pipeline.</p>
 </section>
 <section id="trainable-module">
 <h2>Trainable module<a class="headerlink" href="#trainable-module" title="Link to this heading">¶</a></h2>
 <p>For convenience, we have provided a <cite>torch</cite> module implementing a basic training loop.</p>
-<dl class="py class" id="module-ionqvision.modules.trainable_module">
-<dt class="sig sig-object py" id="ionqvision.modules.trainable_module.TrainableModule">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ionqvision.modules.trainable_module.</span></span><span class="sig-name descname"><span class="pre">TrainableModule</span></span><a class="reference internal" href="_modules/ionqvision/modules/trainable_module.html#TrainableModule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.modules.trainable_module.TrainableModule" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="ionqvision.modules.trainable_module.TrainableModule.compute_accuracy">
-<span class="sig-name descname"><span class="pre">compute_accuracy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/modules/trainable_module.html#TrainableModule.compute_accuracy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.modules.trainable_module.TrainableModule.compute_accuracy" title="Link to this definition">¶</a></dt>
-<dd><p>Compute the accuracy of <code class="docutils literal notranslate"><span class="pre">self</span></code> with respect to the <code class="docutils literal notranslate"><span class="pre">dataset</span></code>, given
-as a <code class="docutils literal notranslate"><span class="pre">torchvision.datasets</span></code> object.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ionqvision.modules.trainable_module.TrainableModule.num_params">
-<span class="sig-name descname"><span class="pre">num_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/modules/trainable_module.html#TrainableModule.num_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.modules.trainable_module.TrainableModule.num_params" title="Link to this definition">¶</a></dt>
-<dd><p>Count the total number of parameters in a self.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ionqvision.modules.trainable_module.TrainableModule.plot_training_progress">
-<span class="sig-name descname"><span class="pre">plot_training_progress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outfile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/modules/trainable_module.html#TrainableModule.plot_training_progress"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.modules.trainable_module.TrainableModule.plot_training_progress" title="Link to this definition">¶</a></dt>
-<dd><p>Plot the convergence of the loss function, together with the training and test set
-accuracy.</p>
-<p>Optionally store results in <code class="docutils literal notranslate"><span class="pre">outfile</span></code>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ionqvision.modules.trainable_module.TrainableModule.train_module">
-<span class="sig-name descname"><span class="pre">train_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">train_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_config={}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion=&lt;function</span> <span class="pre">binary_cross_entropy&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/modules/trainable_module.html#TrainableModule.train_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.modules.trainable_module.TrainableModule.train_module" title="Link to this definition">¶</a></dt>
-<dd><p>Basic training loop.</p>
-<p>INPUT:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">train_set</span></code> – training data <code class="docutils literal notranslate"><span class="pre">torchvision.datasets</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">test_set</span></code> – test data <code class="docutils literal notranslate"><span class="pre">torchvision.datasets</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">criterion</span></code> – (optional) optimization objective. Defaults to <code class="docutils literal notranslate"><span class="pre">nn.CrossEntropyLoss</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">train_config</span></code> – (optional) configuration parameters. In addition to keys recognized
-by <code class="docutils literal notranslate"><span class="pre">torch.optim.Adam</span></code>, <code class="docutils literal notranslate"><span class="pre">epochs=20,</span></code> <code class="docutils literal notranslate"><span class="pre">clip_grad=False,</span></code> and 
-<code class="docutils literal notranslate"><span class="pre">log_interval=500</span></code> are also supported.</p></li>
-</ul>
-</div></blockquote>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 </section>
 
@@ -459,35 +329,9 @@ by <code class="docutils literal notranslate"><span class="pre">torch.optim.Adam
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Quantum-classical PyTorch modules</a><ul>
-<li><a class="reference internal" href="#module-ionqvision.modules.binary_classifier">Classifier</a><ul>
-<li><a class="reference internal" href="#ionqvision.modules.binary_classifier.BinaryMNISTClassifier"><code class="docutils literal notranslate"><span class="pre">BinaryMNISTClassifier</span></code></a><ul>
-<li><a class="reference internal" href="#ionqvision.modules.binary_classifier.BinaryMNISTClassifier.forward"><code class="docutils literal notranslate"><span class="pre">BinaryMNISTClassifier.forward()</span></code></a></li>
-<li><a class="reference internal" href="#ionqvision.modules.binary_classifier.BinaryMNISTClassifier.get_train_test_set"><code class="docutils literal notranslate"><span class="pre">BinaryMNISTClassifier.get_train_test_set()</span></code></a></li>
-<li><a class="reference internal" href="#ionqvision.modules.binary_classifier.BinaryMNISTClassifier.load_binary_mnist"><code class="docutils literal notranslate"><span class="pre">BinaryMNISTClassifier.load_binary_mnist()</span></code></a></li>
-<li><a class="reference internal" href="#ionqvision.modules.binary_classifier.BinaryMNISTClassifier.save_model"><code class="docutils literal notranslate"><span class="pre">BinaryMNISTClassifier.save_model()</span></code></a></li>
-<li><a class="reference internal" href="#ionqvision.modules.binary_classifier.BinaryMNISTClassifier.submit_model_for_grading"><code class="docutils literal notranslate"><span class="pre">BinaryMNISTClassifier.submit_model_for_grading()</span></code></a></li>
-<li><a class="reference internal" href="#ionqvision.modules.binary_classifier.BinaryMNISTClassifier.visualize_batch"><code class="docutils literal notranslate"><span class="pre">BinaryMNISTClassifier.visualize_batch()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#quantum-module">Quantum module</a><ul>
-<li><a class="reference internal" href="#ionqvision.modules.quantum_module.QuantumModule"><code class="docutils literal notranslate"><span class="pre">QuantumModule</span></code></a><ul>
-<li><a class="reference internal" href="#ionqvision.modules.quantum_module.QuantumModule.forward"><code class="docutils literal notranslate"><span class="pre">QuantumModule.forward()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#trainable-module">Trainable module</a><ul>
-<li><a class="reference internal" href="#ionqvision.modules.trainable_module.TrainableModule"><code class="docutils literal notranslate"><span class="pre">TrainableModule</span></code></a><ul>
-<li><a class="reference internal" href="#ionqvision.modules.trainable_module.TrainableModule.compute_accuracy"><code class="docutils literal notranslate"><span class="pre">TrainableModule.compute_accuracy()</span></code></a></li>
-<li><a class="reference internal" href="#ionqvision.modules.trainable_module.TrainableModule.num_params"><code class="docutils literal notranslate"><span class="pre">TrainableModule.num_params()</span></code></a></li>
-<li><a class="reference internal" href="#ionqvision.modules.trainable_module.TrainableModule.plot_training_progress"><code class="docutils literal notranslate"><span class="pre">TrainableModule.plot_training_progress()</span></code></a></li>
-<li><a class="reference internal" href="#ionqvision.modules.trainable_module.TrainableModule.train_module"><code class="docutils literal notranslate"><span class="pre">TrainableModule.train_module()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a class="reference internal" href="#classifier">Classifier</a></li>
+<li><a class="reference internal" href="#quantum-module">Quantum module</a></li>
+<li><a class="reference internal" href="#trainable-module">Trainable module</a></li>
 </ul>
 </li>
 </ul>
@@ -499,7 +343,7 @@ by <code class="docutils literal notranslate"><span class="pre">torch.optim.Adam
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
+</div><script src="_static/documentation_options.js?v=c6e86fd7"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=4e2eecee"></script>

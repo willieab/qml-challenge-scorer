@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="prev" title="Quantum Functions" href="quantum_functions.html" />
 
     <!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
-        <title>Some useful helper methods - IonQ Vision documentation</title>
+        <title>Some useful helper methods - IonQ Vision latest documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=387cc868" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
@@ -179,7 +179,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="index.html"><div class="brand">IonQ Vision  documentation</div></a>
+      <a href="index.html"><div class="brand">IonQ Vision latest documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -191,7 +191,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -203,7 +203,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
   
   
-  <span class="sidebar-brand-text">IonQ Vision  documentation</span>
+  <span class="sidebar-brand-text">IonQ Vision latest documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -252,227 +252,14 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="module-ionqvision.utils">
-<span id="some-useful-helper-methods"></span><h1>Some useful helper methods<a class="headerlink" href="#module-ionqvision.utils" title="Link to this heading">¶</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="ionqvision.utils.change_of_basis_circuit">
-<span class="sig-prename descclassname"><span class="pre">ionqvision.utils.</span></span><span class="sig-name descname"><span class="pre">change_of_basis_circuit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">basis</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/utils.html#change_of_basis_circuit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.utils.change_of_basis_circuit" title="Link to this definition">¶</a></dt>
-<dd><p>Construct a <code class="docutils literal notranslate"><span class="pre">QuantumCircuit</span></code> implementing a change of basis operation.</p>
-<p>INPUT:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">basis</span></code> – a word in <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>, and <code class="docutils literal notranslate"><span class="pre">Z</span></code> indicating the desired
-Pauli measurement basis for each qubit</p></li>
-</ul>
-</div></blockquote>
-<p>This method uses the Hadamard gate <span class="math notranslate nohighlight">\(H\)</span> to diagonalize the Pauli-X gate, and
-the composition <span class="math notranslate nohighlight">\(S^\dagger H\)</span> to diagonalize the Pauli-Y gate.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">basis</span></code> string is interpreted in Qiskit bit order: <code class="docutils literal notranslate"><span class="pre">basis[-1]</span></code>
-determines the measurement basis for qubit <code class="docutils literal notranslate"><span class="pre">q_0</span></code>.</p>
-</div>
-<dl class="field-list">
-<dt class="field-odd">EXAMPLE<span class="colon">:</span></dt>
-<dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ionqvision.utils</span> <span class="kn">import</span> <span class="n">change_of_basis_circuit</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">cob_qc</span> <span class="o">=</span> <span class="n">change_of_basis_circuit</span><span class="p">(</span><span class="s2">&quot;XYZ&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">cob_qc</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
-<span class="go">      ░             </span>
-<span class="go">q_0: ─░─────────────</span>
-<span class="go">      ░ ┌─────┐┌───┐</span>
-<span class="go">q_1: ─░─┤ Sdg ├┤ H ├</span>
-<span class="go">      ░ └┬───┬┘└───┘</span>
-<span class="go">q_2: ─░──┤ H ├──────</span>
-<span class="go">      ░  └───┘      </span>
-</pre></div>
-</div>
-</dd>
-</dl>
-<p>We verify the resulting circuit indeed implements the appropriate unitary
-operation.</p>
-<dl class="field-list">
-<dt class="field-odd">EXAMPLE<span class="colon">:</span></dt>
-<dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Operator</span><span class="p">,</span> <span class="n">SparsePauliOp</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">H</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_list</span><span class="p">([(</span><span class="s2">&quot;XYZ&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span><span class="o">.</span><span class="n">to_matrix</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">parity</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="nb">sum</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">3</span><span class="p">)]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">cob_qc</span> <span class="o">=</span> <span class="n">change_of_basis_circuit</span><span class="p">(</span><span class="s2">&quot;XYZ&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">V</span> <span class="o">=</span> <span class="n">Operator</span><span class="p">(</span><span class="n">cob_qc</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">V</span> <span class="o">@</span> <span class="n">H</span> <span class="o">@</span> <span class="n">V</span><span class="o">.</span><span class="n">conj</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">parity</span><span class="p">))</span>
-<span class="go">True</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ionqvision.utils.cvar_moments">
-<span class="sig-prename descclassname"><span class="pre">ionqvision.utils.</span></span><span class="sig-name descname"><span class="pre">cvar_moments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">counts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/utils.html#cvar_moments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.utils.cvar_moments" title="Link to this definition">¶</a></dt>
-<dd><p>Compute the CVaR expectation and variance of the given <code class="docutils literal notranslate"><span class="pre">values</span></code>, sorted
-according to <code class="docutils literal notranslate"><span class="pre">counts</span></code>.</p>
-<p>The parameter <code class="docutils literal notranslate"><span class="pre">0.0</span> <span class="pre">&lt;=</span> <span class="pre">alpha</span> <span class="pre">&lt;=</span> <span class="pre">1.0</span></code> indicates the fraction of samples to
-consider in the expectation calculation. Precisely, let <span class="math notranslate nohighlight">\(K\)</span> denote
-<code class="docutils literal notranslate"><span class="pre">counts.sum()</span></code> and let <span class="math notranslate nohighlight">\(v_1, \ldots, v_K\)</span> denote the entries of <code class="docutils literal notranslate"><span class="pre">values</span></code>, 
-sorted in non-decreasing order, and with <code class="docutils literal notranslate"><span class="pre">values[k]</span></code> written with
-multiplicity <code class="docutils literal notranslate"><span class="pre">counts[k]</span></code>. Then the CVaR expectation is given by
-<div class="math-wrapper docutils container">
-<div class="math notranslate nohighlight">
-\[
-\frac{1}{\lceil \alpha K \rceil} \sum_{k = 0}^{\lceil \alpha K \rceil} v_k.
-\]</div>
-</div>
-</p>
-<p>In <span id="id1">Barkoutsos <em>et al.</em> [<a class="reference internal" href="index.html#id2" title="Panagiotis Kl. Barkoutsos, Giacomo Nannicini, Anton Robert, Ivano Tavernelli, and Stefan Woerner. Improving Variational Quantum Optimization using CVaR. Volume 4. Verein zur Förderung des Open Access Publizierens in den Quantenwissenschaften, April 2020. URL: https://doi.org/10.22331/q-2020-04-20-256, doi:10.22331/q-2020-04-20-256.">BNR+20</a>]</span>, the authors provide empirical evidence
-suggesting that CVaR leads to faster convergence for various optimization
-problems.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Both <code class="docutils literal notranslate"><span class="pre">values</span></code> and <code class="docutils literal notranslate"><span class="pre">counts</span></code> must be 1D-NumPy arrays. In addition, 
-they must be provided in the same order, so that <code class="docutils literal notranslate"><span class="pre">counts[j]</span></code>
-describes the frequency of <code class="docutils literal notranslate"><span class="pre">values[j]</span></code>.</p>
-</div>
-<dl class="field-list">
-<dt class="field-odd">EXAMPLE<span class="colon">:</span></dt>
-<dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ionqvision.utils</span> <span class="kn">import</span> <span class="n">cvar_moments</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mu</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cvar_moments</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">counts</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">mu</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">counts</span><span class="p">)</span>
-<span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">cvar_moments</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">counts</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="go">(1.4, 0.24000000000000044)</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ionqvision.utils.fast_ising_energies">
-<span class="sig-prename descclassname"><span class="pre">ionqvision.utils.</span></span><span class="sig-name descname"><span class="pre">fast_ising_energies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ising_ham</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">states</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/utils.html#fast_ising_energies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.utils.fast_ising_energies" title="Link to this definition">¶</a></dt>
-<dd><p>Quickly obtain eigenvalues of an Ising Hamiltonian corresponding to the
-given <code class="docutils literal notranslate"><span class="pre">states</span></code>.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">states</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, method returns all the eigenvalues.</p>
-<dl class="field-list">
-<dt class="field-odd">EXAMPLE<span class="colon">:</span></dt>
-<dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ionqvision.utils</span> <span class="kn">import</span> <span class="n">fast_ising_energies</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">SparsePauliOp</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">SparsePauliOp</span><span class="o">.</span><span class="n">from_list</span><span class="p">([(</span><span class="s2">&quot;IZ&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;ZI&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;ZZ&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">)])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fast_ising_energies</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">,</span> <span class="n">states</span><span class="p">)</span>
-<span class="go">array([4., 2.])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fast_ising_energies</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">)</span>
-<span class="go">array([ 0.,  4.,  2., -6.])</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-<p>This method complies with the Qiskit bit order:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">Operator</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Operator</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">)</span><span class="o">.</span><span class="n">data</span>
-<span class="go">array([[ 0.+0.j,  0.+0.j,  0.+0.j,  0.+0.j],</span>
-<span class="go">       [ 0.+0.j,  4.+0.j,  0.+0.j,  0.+0.j],</span>
-<span class="go">       [ 0.+0.j,  0.+0.j,  2.+0.j,  0.+0.j],</span>
-<span class="go">       [ 0.+0.j,  0.+0.j,  0.+0.j, -6.+0.j]])</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ionqvision.utils.most_likely_states">
-<span class="sig-prename descclassname"><span class="pre">ionqvision.utils.</span></span><span class="sig-name descname"><span class="pre">most_likely_states</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">counts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_states</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse_bit_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/utils.html#most_likely_states"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.utils.most_likely_states" title="Link to this definition">¶</a></dt>
-<dd><p>Extract the top <code class="docutils literal notranslate"><span class="pre">num_states</span></code> most probable outcomes from the <code class="docutils literal notranslate"><span class="pre">counts</span></code> 
-dictionary of <code class="docutils literal notranslate"><span class="pre">(state,</span> <span class="pre">count)</span></code> key-value pairs.</p>
-<p>Returns an <code class="xref py py-class docutils literal notranslate"><span class="pre">OrderedDict</span></code> of <code class="docutils literal notranslate"><span class="pre">(state,</span> <span class="pre">probability)</span></code> pairs ranked by
-<strong>decreasing</strong> likelihood.</p>
-<p>By default, the states are returned in Qiskit bit-order. However, the order
-can be reversed using the <code class="docutils literal notranslate"><span class="pre">reverse_bit_order</span></code> flag.</p>
-<dl class="field-list">
-<dt class="field-odd">EXAMPLE<span class="colon">:</span></dt>
-<dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ionqvision.utils</span> <span class="kn">import</span> <span class="n">most_likely_states</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">counts</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;001&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;110&quot;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s2">&quot;010&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;111&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">most_likely_states</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">num_states</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="go">OrderedDict([(&#39;110&#39;, 0.4375), (&#39;111&#39;, 0.3125)])</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">most_likely_states</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">num_states</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">reverse_bit_order</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="go">OrderedDict([(&#39;011&#39;, 0.4375), (&#39;111&#39;, 0.3125)])</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ionqvision.utils.plot_cost_landscape">
-<span class="sig-prename descclassname"><span class="pre">ionqvision.utils.</span></span><span class="sig-name descname"><span class="pre">plot_cost_landscape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cost_fun</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_lims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_lims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/utils.html#plot_cost_landscape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.utils.plot_cost_landscape" title="Link to this definition">¶</a></dt>
-<dd><p>Plot the 3D surface described by the given <code class="docutils literal notranslate"><span class="pre">cost_fun</span></code> of two variational
-parameters by computing <code class="docutils literal notranslate"><span class="pre">num_samples**2</span></code> in the rectangle 
-<code class="docutils literal notranslate"><span class="pre">x_lims</span></code> $times <code class="docutils literal notranslate"><span class="pre">y_lims</span></code>.</p>
-<p>OUTPUT:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Z</span></code> – NumPy array describing the cost discretized surface</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">fig</span></code> – 3D PyPlot <code class="docutils literal notranslate"><span class="pre">Figure</span></code> with the plotted surface</p></li>
-</ul>
-</div></blockquote>
-<p>For example, we can inspect the cost landscape of the objective function of
-a Knapsack problem with respect to the standard QAOA ansatz. To do this,
-first we set up a <code class="xref py py-class docutils literal notranslate"><span class="pre">KnapsackSolver</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ionqvision.solvers</span> <span class="kn">import</span> <span class="n">KnapsackSolver</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">capacity</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">solver</span> <span class="o">=</span> <span class="n">KnapsackSolver</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">capacity</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">multi_angle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Now we plot the solver objective as a function of the variational circuit
-parameters:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ionqvision.utils</span> <span class="kn">import</span> <span class="n">plot_cost_landscape</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">cost_fun</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">objective</span><span class="o">.</span><span class="n">fun</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">Z</span><span class="p">,</span> <span class="n">fig</span> <span class="o">=</span> <span class="n">plot_cost_landscape</span><span class="p">(</span><span class="n">cost_fun</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>
-</pre></div>
-</div>
-<p>Displaying <code class="docutils literal notranslate"><span class="pre">fig</span></code> results in the following image.</p>
-<a class="only-dark reference internal image-reference" href="_images/cost_landscape_ex_dark.png"><img alt="3D surface plot of the Knapsack problem's variational objective" class="only-dark align-center" src="_images/cost_landscape_ex_dark.png" style="width: 600px;" />
-</a>
-<a class="only-light reference internal image-reference" href="_images/cost_landscape_ex_light.png"><img alt="3D surface plot of the Knapsack problem's variational objective" class="only-light align-center" src="_images/cost_landscape_ex_light.png" style="width: 600px;" />
-</a>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="ionqvision.utils.robust_backend_call">
-<span class="sig-prename descclassname"><span class="pre">ionqvision.utils.</span></span><span class="sig-name descname"><span class="pre">robust_backend_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_attempts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/utils.html#robust_backend_call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.utils.robust_backend_call" title="Link to this definition">¶</a></dt>
-<dd><p>Try to evaluate <code class="docutils literal notranslate"><span class="pre">fn(*args,</span> <span class="pre">**kwargs)</span></code> every <code class="docutils literal notranslate"><span class="pre">wait_time</span></code> seconds, up to
-<code class="docutils literal notranslate"><span class="pre">max_attempt</span></code> times, excepting any network and server errors.</p>
-<p>Precisely, this method provides a means of calling the quantum backend
-method <code class="docutils literal notranslate"><span class="pre">fn</span></code> that is robust against any 
-<code class="xref py py-class docutils literal notranslate"><span class="pre">reqests.exceptions.RequestException</span></code>’s, any
-<code class="xref py py-class docutils literal notranslate"><span class="pre">urllib3.exceptions.HTTPError</span></code>’s, any
-<code class="xref py py-class docutils literal notranslate"><span class="pre">urllib3.exceptions.PoolError</span></code>’s, and any 
-<code class="xref py py-class docutils literal notranslate"><span class="pre">qiskit_ionq.exceptions.IonQAPIError</span></code>’s thrown.</p>
-<dl class="field-list">
-<dt class="field-odd">EXAMPLE<span class="colon">:</span></dt>
-<dd class="field-odd"><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ionqvision.utils</span> <span class="kn">import</span> <span class="n">robust_backend_call</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">qiskit_aer</span> <span class="kn">import</span> <span class="n">Aer</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">simulator</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;aer_simulator&#39;</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="n">QuantumCircuit</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">qc</span><span class="o">.</span><span class="n">measure_all</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">quantum_job</span> <span class="o">=</span> <span class="n">robust_backend_call</span><span class="p">(</span><span class="n">simulator</span><span class="o">.</span><span class="n">run</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">qc</span><span class="p">,),</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;shots&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">robust_backend_call</span><span class="p">(</span><span class="n">quantum_job</span><span class="o">.</span><span class="n">result</span><span class="p">)</span>
-<span class="go">{&#39;0&#39;: 46, &#39;1&#39;: 54}</span>
-</pre></div>
-</div>
-</dd>
-</dl>
-</dd></dl>
-
+          <section id="some-useful-helper-methods">
+<h1>Some useful helper methods<a class="headerlink" href="#some-useful-helper-methods" title="Link to this heading">¶</a></h1>
 </section>
 
         </article>
@@ -510,42 +297,15 @@ method <code class="docutils literal notranslate"><span class="pre">fn</span></c
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            On this page
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">Some useful helper methods</a><ul>
-<li><a class="reference internal" href="#ionqvision.utils.change_of_basis_circuit"><code class="docutils literal notranslate"><span class="pre">change_of_basis_circuit()</span></code></a></li>
-<li><a class="reference internal" href="#ionqvision.utils.cvar_moments"><code class="docutils literal notranslate"><span class="pre">cvar_moments()</span></code></a></li>
-<li><a class="reference internal" href="#ionqvision.utils.fast_ising_energies"><code class="docutils literal notranslate"><span class="pre">fast_ising_energies()</span></code></a></li>
-<li><a class="reference internal" href="#ionqvision.utils.most_likely_states"><code class="docutils literal notranslate"><span class="pre">most_likely_states()</span></code></a></li>
-<li><a class="reference internal" href="#ionqvision.utils.plot_cost_landscape"><code class="docutils literal notranslate"><span class="pre">plot_cost_landscape()</span></code></a></li>
-<li><a class="reference internal" href="#ionqvision.utils.robust_backend_call"><code class="docutils literal notranslate"><span class="pre">robust_backend_call()</span></code></a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
+</div><script src="_static/documentation_options.js?v=c6e86fd7"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=4e2eecee"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]]}})</script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]]}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>
