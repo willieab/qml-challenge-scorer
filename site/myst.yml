@@ -27,6 +27,6 @@ site:
     favicon: media/logo.png
   actions:
     - title: IonQ Vision Docs
-      url: https://refactored-adventure-228m4r2.pages.github.io/ionqvision-docs
+      url: https://willieab.github.io/qml-challenge-scorer/ionqvision-docs
     - title: IonQ Cloud
       url: https://cloud.ionq.com

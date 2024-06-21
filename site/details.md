@@ -12,7 +12,7 @@ You'll receive **bonus points** if you use fewer gates and parameters, and your 
 :::
 
 :::{hint} Tip
-Use the `ionqvision` package as-is: do **not** modify the source code files. You're welcome to create new files and interact with the `ionqvision` modules through the [provided API](https://refactored-adventure-228m4r2.pages.github.io/ionqvision-docs/).
+Use the `ionqvision` package as-is: do **not** modify the source code files. You're welcome to create new files and interact with the `ionqvision` modules through the [provided API](https://willieab.github.io/qml-challenge-scorer/ionqvision-docs/).
 
 The auto-grader relies on the "source" distribution of the `ionqvision` package, so any of your local changes will **not** be considered in the evaluation stage.
 :::
@@ -24,7 +24,7 @@ The classical part of the structure of our quantum-classical neural network is *
 :::{caution}
 The backward pass of the training loop uses a [parameter-shift rule](https://sakhujasaiyam.medium.com/parameter-shift-rule-for-finding-gradients-in-quantum-circuits-9d61957fc1c4) to differentiate your encoder and ansatz with respect to the input data and the trainable parameters.
 
-Make sure your ansatz design remains differentiable; for more details, check out the `ionqvision.ansatze.VariationalAnsatz` [documentation](https://refactored-adventure-228m4r2.pages.github.io/ionqvision-docs/ansatze.html).
+Make sure your ansatz design remains differentiable; for more details, check out the `ionqvision.ansatze.VariationalAnsatz` [documentation](https://willieab.github.io/qml-challenge-scorer/ionqvision-docs/ansatze.html).
 :::
 
 :::{hint} Tip
