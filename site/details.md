@@ -41,7 +41,7 @@ Or stick to `.py` scripts. The choice is yours.
 :::
 
 :::{warning}
-The starter code assumes your current directory is set as the **root** level (`ionq-vision-challenge`) of the cloned challenge repository.
+The starter code assumes your current directory is set as the **root** level (`ionq-skku-vision-challenge`) of the cloned challenge repository.
 
 If you're working in a different directory, be sure to modify the commands given here and use the `path_to_repo` argument appropriately.
 :::

@@ -7,7 +7,7 @@ project:
     - Willie Aboumrad
     - Sang Kim  
 
-  github: https://github.com/ionq-applications/ionq-vision-challenge
+  github: https://github.com/willieab/ionq-skku-vision-challenge
   copyright: IonQ, Inc (2024)
   banner: media/forte_header.png
   subject: Quantum Vision Challenge

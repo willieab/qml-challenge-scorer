@@ -21,7 +21,7 @@ with open("README", "r") as f:
 
 setup(
     name="ionqvision",
-    url="https://github.com/ionq-applications/ionq-vision-challenge",
+    url="https://github.com/willieab/ionq-skku-vision-challenge",
     version="1.0",
     author="Willie Aboumrad, IonQ Inc.",
     description="IonQ's module for hybrid quantum-classical neural networks",
