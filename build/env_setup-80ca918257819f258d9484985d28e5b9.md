@@ -1,7 +1,11 @@
 (ch-env-setup)=
 # Environment set up
 
-To complete this challenge, you'll need a local installation of `ionqvision`. You can download the source files by `git clone`-ing our [challenge repository](https://github.com/willieab/ionq-skku-vision-challenge) and then install them using `pip`.
+To complete this challenge, you'll need a local installation of `ionqvision`. You can download the source files by `git clone`-ing our [challenge repository](https://github.com/willieab/ionq-skku-vision-challenge), as follows.
+
+```{code} bash
+git clone https://github.com/willieab/ionq-skku-vision-challenge.git
+```
 
 We recommend installing `ionqvision` in a virtual environment because it requires a number of dependencies, including minimum versions of `torch`, `qiskit`, and `qiskit_ionq`.
 
