@@ -54,6 +54,7 @@ jobs:
 
       - name: Build site
         run: |
+          export BASE_URL="qml-challenge-scorer/"
           cd site
           myst build --html
           cd ..

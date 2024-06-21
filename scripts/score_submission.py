@@ -71,7 +71,7 @@ def record_results(results, max_attempts=10):
             print(f"Git error encountered: {e}")
             repo.git.reset("--hard")
     if k == max_attempts - 1:
-        raise e
+        raise RuntimeError("Unable to update results.csv")
 
 
 if __name__ == "__main__":
