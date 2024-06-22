@@ -52,14 +52,13 @@ def attempt_retrieve_submission(submission_repo, commit):
     return path[0]
 
 
-def get_metadata(path_to_repo, commit_sha):
+def get_metadata(submission, path_to_repo, commit_sha):
     commit = git.Repo(path_to_repo).commit(commit_sha)
     team = " ".join(submission.name.split("_")[1:-1]).replace("-", " ")
     return [team.title(), commit.hexsha[:6], commit.committed_date]
 
 
-def record_results(results, max_attempts=10):
-    repo = git.Repo(search_parent_directories=True)
+def record_results(results, repo, max_attempts=10):
     suffix = {1: "st", 2: "nd", 3: "rd"}
     for k in range(max_attempts):
         try:
@@ -74,31 +73,17 @@ def record_results(results, max_attempts=10):
         raise RuntimeError("Unable to update results.csv")
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Score submission.")
-    parser.add_argument("commit_sha", help="SHA of commit that created the submission.")
-    parser.add_argument("--submission_repo", default=".", help="Path to submissions repo.")
-    parser.add_argument("--max_retries", type=int, default=10, help="Max attempts at pushing updated results.")
-    parser.add_argument("--check_exist", action="store_true", default=False, help="Only check for existence of matching submission.")
-    args = parser.parse_args()
-
+def score_submission(submission_repo, commit_sha, max_attempts=10):
     # Retrieve submission, if any
-    try:
-        submission = attempt_retrieve_submission(args.submission_repo, args.commit_sha)
-    except ValueError as e:
-        print(e)
-        sys.exit(0)
-
-    # If we're only checking existence, were done!
-    if args.check_exist:
-        sys.exit(0)
+    submission = attempt_retrieve_submission(submission_repo, commit_sha)
 
     # Grade submission and gather metadata
     result = grade_submission(submission)
-    metadata = get_metadata(args.submission_repo, args.commit_sha)
+    metadata = get_metadata(submission, submission_repo, commit_sha)
 
     # Push report
-    record_results(metadata + result, args.max_retries)
+    repo = git.Repo(search_parent_directories=True)
+    record_results(metadata + result, repo, max_attempts)
 
     # Update leaderboard
     subprocess.run(
@@ -106,9 +91,22 @@ if __name__ == "__main__":
         cwd="site",
         shell=True
     )
-    repo = git.Repo(search_parent_directories=True)
-    repo.git.add("site")
+    repo.git.add("site/leaderboard.ipynb")
     repo.index.commit(f"Updating leaderboard...")
     origin = repo.remotes.origin
     origin.push()
-    print(f"Success! Recorded {result[0]} score for commit {args.commit_sha} from {metadata[0]}!")
+    print(f"Success! Recorded {result[0]} score for commit {commit_sha} from {metadata[0]}!")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Score submission.")
+    parser.add_argument("commit_sha", help="SHA of commit that created the submission.")
+    parser.add_argument("--submission_repo", default=".", help="Path to submissions repo.")
+    parser.add_argument("--max_retries", type=int, default=10, help="Max attempts at pushing updated results.")
+    args = parser.parse_args()
+
+    try:
+        score_submission(args.submission_repo, args.commit_sha, args.max_retries)        
+    except ValueError as e:
+        print(e)
+        sys.exit(0)
