@@ -27,12 +27,12 @@ def audit_scores(path_to_repo, max_attempts=10):
         # Traverse submissions
         for model in models.traverse():
             cmt_sha = Path(model.name).stem.split("_")[-1]
-            print(f"Checking out submission {model.name}...", flush=True)
             total_submissions += 1
 
             # Grade every submission with no score on record
             if cmt_sha[:6] not in recorded:
                 try:
+                    print(f"Checking out unregistered submission {model.name}...", flush=True)
                     score_submission(path_to_repo, cmt_sha, max_attempts)
                     print(f"Scored submission at commit {cmt_sha}...", flush=True)
                 except Exception as e:
