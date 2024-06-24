@@ -1,0 +1,830 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Some useful helper methods" href="utils.html" /><link rel="prev" title="Qubit observables" href="observables.html" />
+
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
+        <title>Quantum Functions - IonQ Vision documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">IonQ Vision  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">IonQ Vision  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Package library</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Quantum-classical PyTorch modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ansatze.html">Variational Ansatze</a></li>
+<li class="toctree-l1"><a class="reference internal" href="observables.html">Qubit observables</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Quantum Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Some useful helper methods</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/quantum_functions.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="quantum-functions">
+<h1>Quantum Functions<a class="headerlink" href="#quantum-functions" title="Link to this heading">¶</a></h1>
+<section id="module-ionqvision.quantum_function_category.quantum_function">
+<span id="quantum-function-category"></span><h2>Quantum function category<a class="headerlink" href="#module-ionqvision.quantum_function_category.quantum_function" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function.QuantumFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ionqvision.quantum_function_category.quantum_function.</span></span><span class="sig-name descname"><span class="pre">QuantumFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ansatz</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="ansatze.html#ionqvision.ansatze.variational_ansatz.VariationalAnsatz" title="ionqvision.ansatze.variational_ansatz.VariationalAnsatz"><span class="pre">VariationalAnsatz</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function.html#QuantumFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>An abstract class used to model the computational atoms serving as building
+blocks for the IonQ framework for differentiable quantum computations.</p>
+<p>This class models the sub-category of smooth real-valued functions that are
+defined over some hypercube <span class="math notranslate nohighlight">\([0, 2\pi]^n\)</span> and are given by a composition
+<span class="math notranslate nohighlight">\(f = h \circ g\)</span>, where <span class="math notranslate nohighlight">\(g\colon \mathbb{R}^n \to \mathbb{C}^{2m}\)</span> maps
+variational ansatz parameters to vectors in a high-dimensional Hilbert space
+described by the tensor product of qubit spaces, and
+<span class="math notranslate nohighlight">\(h\colon \mathbb{C}^{2m} \to \mathbb{R}\)</span> encapsulates the classical
+post-processing required to compute the function value upon measuring the
+bound ansatz.</p>
+<p>This class is equipped with the structure of an additive monoidal category
+<span class="math notranslate nohighlight">\(\mathcal{C}\)</span> that is generated by simple objects and is enriched over
+<span class="math notranslate nohighlight">\(\mathbb{R}\)</span>. In addition, this category is equipped with a natural
+embedding <span class="math notranslate nohighlight">\(\mathbb{R} \hookrightarrow \mathcal{C}\)</span>. Since this category
+models a function category, the additive and monoidal operations are simply
+point-wise sums and products.</p>
+<p>In English, this means we can perform arithmetic operations on
+<a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumFunction</span></code></a> objects, so that the following syntax is
+completely legal tender:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ionqvision.ansatze</span> <span class="kn">import</span> <span class="n">VariationalAnsatz</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ionqvision.quantum_functions</span> <span class="kn">import</span> <span class="n">IsingEnergy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">qiskit.circuit</span> <span class="kn">import</span> <span class="n">Parameter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">qiskit.quantum_info</span> <span class="kn">import</span> <span class="n">SparsePauliOp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">Parameter</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">),</span> <span class="n">Parameter</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ansatz</span> <span class="o">=</span> <span class="n">VariationalAnsatz</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">ansatz</span><span class="o">.</span><span class="n">rx</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">_</span> <span class="o">=</span> <span class="n">ansatz</span><span class="o">.</span><span class="n">ry</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e1</span> <span class="o">=</span> <span class="n">IsingEnergy</span><span class="p">(</span><span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">&quot;ZI&quot;</span><span class="p">,</span> <span class="n">coeffs</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">ansatz</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e2</span> <span class="o">=</span> <span class="n">IsingEnergy</span><span class="p">(</span><span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">&quot;ZI&quot;</span><span class="p">,</span> <span class="n">coeffs</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">ansatz</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">-</span><span class="n">e2</span> <span class="o">+</span> <span class="n">e1</span> <span class="o">*</span> <span class="n">e2</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">e1</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">==</span> <span class="n">e1</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+<p>And also:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">energy</span> <span class="o">=</span> <span class="n">IsingEnergy</span><span class="p">(</span><span class="n">SparsePauliOp</span><span class="p">(</span><span class="s2">&quot;ZI&quot;</span><span class="p">,</span> <span class="n">coeffs</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">ansatz</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">energy</span> <span class="o">*</span> <span class="n">energy</span>
+<span class="go">0.72154</span>
+</pre></div>
+</div>
+<p>This class serves as a template for developers intending to build new
+computational atoms. It models a mathematical (scalar) function of
+variational circuit parameters; that is, <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fun()</span></code></a> maps a vector
+<code class="docutils literal notranslate"><span class="pre">param_vals</span></code> of variational circuit parameter values to a scalar.</p>
+<p>The design is such that the quantum execution is separate from the classical.
+Therefore, in order to use the public-facing method <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fun()</span></code></a>, the
+developer must implement two methods:</p>
+<p>1. <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction._prepare_quantum_execution_fun" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction._prepare_quantum_execution_fun"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_prepare_quantum_execution_fun()</span></code></a>, which accepts a list of values
+for the variational circuit parameters and returns a list of bound circuits
+obtained from the <a class="reference internal" href="ansatze.html#ionqvision.ansatze.variational_ansatz.VariationalAnsatz" title="ionqvision.ansatze.variational_ansatz.VariationalAnsatz"><code class="xref py py-class docutils literal notranslate"><span class="pre">VariationalAnsatz</span></code></a> <code class="docutils literal notranslate"><span class="pre">ansatz</span></code> by assigning
+parameters and applying any desired circuit transformations, such as
+appending a change-of-basis sub-circuit.</p>
+<p>2. <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction._fun" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction._fun"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_fun()</span></code></a>, which accepts a list of measurements corresponding to the
+circuits prepared by <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction._prepare_quantum_execution_fun" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction._prepare_quantum_execution_fun"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_prepare_quantum_execution_fun()</span></code></a> and implements
+all the classical post-processing required to obtain the result of the
+quantum function evaluation; in most cases, this post-processing computes
+some sort of expectation value.</p>
+<p>The developer must similarly implement
+<a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction._prepare_quantum_execution_grad" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction._prepare_quantum_execution_grad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_prepare_quantum_execution_grad()</span></code></a> and <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction._grad" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction._grad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_grad()</span></code></a>, using the same
+signatures as the methods above. In particular, if
+<code class="docutils literal notranslate"><span class="pre">self.is_differentiable</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, then every solver in this package
+assumes <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.grad" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction.grad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">grad()</span></code></a> is fully implemented.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumFunction</span></code></a> inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code>, so it cannot be
+instantiated directly. Similarly, attempting to instantiate a subclass
+without explicitly implementing all the required <cite>abstractmethod</cite>’s
+results in a <cite>TypeError</cite>. On the flip side, the public-facing methods
+<a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fun()</span></code></a> and :meth`grad` should <em>not</em> be overriden.</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function.QuantumFunction._fun">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_fun</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cvar_alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function.html#QuantumFunction._fun"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction._fun" title="Link to this definition">¶</a></dt>
+<dd><p>This private method implements the computation of the quantum function
+value, as some weighted average of circuit measurements.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is purely classical and <em>cannot</em> require any sort of
+execution on a quantum backend target.</p>
+</div>
+<p>INPUT:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">measurements</span></code> – a list of measurements corresponding to the
+execution of the result of <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction._prepare_quantum_execution_fun" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction._prepare_quantum_execution_fun"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_prepare_quantum_execution_fun()</span></code></a>
+on a quantum <code class="docutils literal notranslate"><span class="pre">backend</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cvar_alpha</span></code> – parameter for use in computing the CVaR
+expectation value; for details,
+see <a class="reference internal" href="utils.html#ionqvision.utils.cvar_moments" title="ionqvision.utils.cvar_moments"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ionqvision.utils.cvar_moments()</span></code></a></p></li>
+</ul>
+</div></blockquote>
+<p>OUTPUT:</p>
+<blockquote>
+<div><p>A tuple <code class="docutils literal notranslate"><span class="pre">(fun_val,</span> <span class="pre">var)</span></code> where <code class="docutils literal notranslate"><span class="pre">fun_val</span></code> is a float and
+<code class="docutils literal notranslate"><span class="pre">var</span></code> is the variance of the function evaluation: it can be a
+<code class="docutils literal notranslate"><span class="pre">float</span></code> or <code class="docutils literal notranslate"><span class="pre">np.nan</span></code>.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function.QuantumFunction._fun_symb">
+<span class="sig-name descname"><span class="pre">_fun_symb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param_vals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Expr</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function.html#QuantumFunction._fun_symb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction._fun_symb" title="Link to this definition">¶</a></dt>
+<dd><p>Compute an analytical expression for <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fun()</span></code></a>.</p>
+<p>If the optional <code class="docutils literal notranslate"><span class="pre">param_vals</span></code> are passed, the symbolic expression is
+evaluated with <code class="docutils literal notranslate"><span class="pre">param_vals</span></code> in place of the free symbols.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function.QuantumFunction._grad">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measurements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cvar_alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function.html#QuantumFunction._grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction._grad" title="Link to this definition">¶</a></dt>
+<dd><p>This private method implements the computation of the quantum function’s
+gradient as some weighted average of circuit measurements.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is purely classical and <em>cannot</em> require any sort of
+execution on a quantum backend target.</p>
+</div>
+<p>INPUT:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">measurements</span></code> – a list of measurements corresponding to the
+execution of the result of <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction._prepare_quantum_execution_fun" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction._prepare_quantum_execution_fun"><code class="xref py py-meth docutils literal notranslate"><span class="pre">_prepare_quantum_execution_fun()</span></code></a>
+on a quantum <code class="docutils literal notranslate"><span class="pre">backend</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cvar_alpha</span></code> – parameter for use in computing the CVaR
+expectation value; for details,
+see <a class="reference internal" href="utils.html#ionqvision.utils.cvar_moments" title="ionqvision.utils.cvar_moments"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ionqvision.utils.cvar_moments()</span></code></a></p></li>
+</ul>
+</div></blockquote>
+<p>OUTPUT:</p>
+<blockquote>
+<div><p>A tuple <code class="docutils literal notranslate"><span class="pre">(grad_val,</span> <span class="pre">var)</span></code> where <code class="docutils literal notranslate"><span class="pre">grad_val</span></code> is an array and
+<code class="docutils literal notranslate"><span class="pre">var</span></code> is the variance of the gradient evaluation.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function.QuantumFunction._prepare_quantum_execution_fun">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_prepare_quantum_execution_fun</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param_vals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">QuantumCircuit</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function.html#QuantumFunction._prepare_quantum_execution_fun"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction._prepare_quantum_execution_fun" title="Link to this definition">¶</a></dt>
+<dd><p>Get a list of bound quantum circuits that need to be executed in order
+to evaluate <code class="docutils literal notranslate"><span class="pre">self._fun</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function.QuantumFunction._prepare_quantum_execution_grad">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_prepare_quantum_execution_grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param_vals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">QuantumCircuit</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function.html#QuantumFunction._prepare_quantum_execution_grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction._prepare_quantum_execution_grad" title="Link to this definition">¶</a></dt>
+<dd><p>Get a list of bound quantum circuits that need to be executed in order
+to evaluate <code class="docutils literal notranslate"><span class="pre">self._grad</span></code>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function.QuantumFunction.ansatz">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ansatz</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="ansatze.html#ionqvision.ansatze.variational_ansatz.VariationalAnsatz" title="ionqvision.ansatze.variational_ansatz.VariationalAnsatz"><span class="pre">VariationalAnsatz</span></a></em><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.ansatz" title="Link to this definition">¶</a></dt>
+<dd><p>Get the variational ansatz required by this <code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumObjective</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun">
+<span class="sig-name descname"><span class="pre">fun</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param_vals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Backend</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cvar_alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function.html#QuantumFunction.fun"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun" title="Link to this definition">¶</a></dt>
+<dd><p>Evaluate the quantum function upon substituting <code class="docutils literal notranslate"><span class="pre">param_vals</span></code> in
+place of the variational parameters in <code class="docutils literal notranslate"><span class="pre">self.ansatz</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">cvar_alpha</span></code> is a float in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code> that controls the
+computation of the Conditional Value at Risk (CVaR) expectation value;
+for details, see <a class="reference internal" href="utils.html#ionqvision.utils.cvar_moments" title="ionqvision.utils.cvar_moments"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ionqvision.utils.cvar_moments()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun_symb">
+<span class="sig-name descname"><span class="pre">fun_symb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param_vals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Expr</span></span></span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function.html#QuantumFunction.fun_symb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun_symb" title="Link to this definition">¶</a></dt>
+<dd><p>Get a symbolic SymPy expression for <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fun()</span></code></a> (with free symbols).</p>
+<p>Optionally evaluate the symbolic expression by substituting
+<code class="docutils literal notranslate"><span class="pre">param_vals</span></code> for <code class="docutils literal notranslate"><span class="pre">self.ansatz.symbols</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function.QuantumFunction.get_param_order">
+<span class="sig-name descname"><span class="pre">get_param_order</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function.html#QuantumFunction.get_param_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.get_param_order" title="Link to this definition">¶</a></dt>
+<dd><p>Get a list specifying the order in which lists of parameter values are
+interpreted.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function.QuantumFunction.grad">
+<span class="sig-name descname"><span class="pre">grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param_vals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Backend</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cvar_alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function.html#QuantumFunction.grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.grad" title="Link to this definition">¶</a></dt>
+<dd><p>Evaluate the gradient of <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fun()</span></code></a> with respect to the variational
+parameters in <code class="docutils literal notranslate"><span class="pre">self.ansatz</span></code>, upon substituting <code class="docutils literal notranslate"><span class="pre">param_vals</span></code> in place
+of the circuit parameters.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fun()</span></code></a> for an explanation of <code class="docutils literal notranslate"><span class="pre">cvar_alpha</span></code>.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function.QuantumFunction.grad_symb">
+<span class="sig-name descname"><span class="pre">grad_symb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param_vals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Expr</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function.html#QuantumFunction.grad_symb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.grad_symb" title="Link to this definition">¶</a></dt>
+<dd><p>Get a symbolic SymPy expression for <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.grad" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction.grad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">grad()</span></code></a> by performing symbolic
+differentiation on the result of <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun_symb" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun_symb"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fun_symb()</span></code></a>.</p>
+<p>Optionally evaluate the symbolic expression by substituting
+<code class="docutils literal notranslate"><span class="pre">param_vals</span></code> for <code class="docutils literal notranslate"><span class="pre">self.ansatz.symbols</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The partial derivatives appear in the order determined by
+<code class="docutils literal notranslate"><span class="pre">self.ansatz.symbols</span></code>.</p>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function.QuantumFunction.is_differentiable">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_differentiable</span></span><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.is_differentiable" title="Link to this definition">¶</a></dt>
+<dd><p>Report whether <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fun()</span></code></a> is differentiable with respect to the
+parameters in the <a class="reference internal" href="ansatze.html#ionqvision.ansatze.variational_ansatz.VariationalAnsatz" title="ionqvision.ansatze.variational_ansatz.VariationalAnsatz"><code class="xref py py-class docutils literal notranslate"><span class="pre">VariationalAnsatz</span></code></a> <code class="docutils literal notranslate"><span class="pre">self.ansatz</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function.QuantumFunction.set_param_order">
+<span class="sig-name descname"><span class="pre">set_param_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function.html#QuantumFunction.set_param_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.set_param_order" title="Link to this definition">¶</a></dt>
+<dd><p>Set the order in which parameter values should be interpreted.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumFunction</span></code></a>’s that manage multiple ansatze, like
+<a class="reference internal" href="observables.html#ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy" title="ionqvision.quantum_functions.hamiltonian_energy.HamiltonianEnergy"><code class="xref py py-class docutils literal notranslate"><span class="pre">HamiltonianEnergy</span></code></a> are responsible for setting the
+parameter order for each ansatz / constituent.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ionqvision.quantum_function_category.hybrid_function">
+<span id="hybrid-functions"></span><h2>Hybrid functions<a class="headerlink" href="#module-ionqvision.quantum_function_category.hybrid_function" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.hybrid_function.HybridFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ionqvision.quantum_function_category.hybrid_function.</span></span><span class="sig-name descname"><span class="pre">HybridFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantum_fun</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction"><span class="pre">QuantumFunction</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Parameter</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">ParameterVector</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trainable_weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Parameter</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ParameterVector</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/hybrid_function.html#HybridFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A kind of <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumFunction</span></code></a> that accepts two kinds of inputs: a data
+vector that is loaded onto the quantum computer using a sequence of
+parametric gates, and a vector with values for the trainable ansatz
+parameters.</p>
+<p>This class implements the bookkeeping needed in order to compute separate
+gradient vectors for each kind of input vector; that is, <a class="reference internal" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction.grad" title="ionqvision.quantum_function_category.hybrid_function.HybridFunction.grad"><code class="xref py py-meth docutils literal notranslate"><span class="pre">grad()</span></code></a>
+returns a pair of arrays, where the first one computes the gradient of the
+output with respect to the <code class="docutils literal notranslate"><span class="pre">inputs</span></code> array while the second one computes
+the gradient of the output with respect to the <code class="docutils literal notranslate"><span class="pre">param_vals</span></code>, or trainable
+ansatz weights.</p>
+<p>This class is implemented mostly to serve as a bridge between
+<a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction" title="ionqvision.quantum_function_category.quantum_function.QuantumFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumFunction</span></code></a>’s and the PyTorch development framework; it is not
+meant to be used directly but rather through <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.TorchQuantumFunction" title="ionqvision.quantum_function_category.quantum_function_torch_wrappers.TorchQuantumFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">TorchQuantumFunction</span></code></a>.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.hybrid_function.HybridFunction.ansatz">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ansatz</span></span><a class="headerlink" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction.ansatz" title="Link to this definition">¶</a></dt>
+<dd><p>Get the ansatz used to evaluate the quantum function.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.hybrid_function.HybridFunction.fun">
+<span class="sig-name descname"><span class="pre">fun</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_vals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Backend</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cvar_alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/hybrid_function.html#HybridFunction.fun"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction.fun" title="Link to this definition">¶</a></dt>
+<dd><p>Evaluate the hybrid function by substituting the <code class="docutils literal notranslate"><span class="pre">inputs</span></code> and <code class="docutils literal notranslate"><span class="pre">param_vals</span></code>
+in the appropriate places.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.hybrid_function.HybridFunction.fun_symb">
+<span class="sig-name descname"><span class="pre">fun_symb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_vals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Expr</span></span></span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/hybrid_function.html#HybridFunction.fun_symb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction.fun_symb" title="Link to this definition">¶</a></dt>
+<dd><p>Compute the symbolic form of this hybrid function.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.hybrid_function.HybridFunction.get_input_params">
+<span class="sig-name descname"><span class="pre">get_input_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/hybrid_function.html#HybridFunction.get_input_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction.get_input_params" title="Link to this definition">¶</a></dt>
+<dd><p>Get a (ordered) list of lists corresponding to the input parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.hybrid_function.HybridFunction.get_trainable_weights">
+<span class="sig-name descname"><span class="pre">get_trainable_weights</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/hybrid_function.html#HybridFunction.get_trainable_weights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction.get_trainable_weights" title="Link to this definition">¶</a></dt>
+<dd><p>Get a (ordered) list of trainable ansatz weights.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.hybrid_function.HybridFunction.grad">
+<span class="sig-name descname"><span class="pre">grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_vals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Backend</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shots</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cvar_alpha</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/hybrid_function.html#HybridFunction.grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction.grad" title="Link to this definition">¶</a></dt>
+<dd><p>Evaluate the hybrid function’s gradient with respect to both <code class="docutils literal notranslate"><span class="pre">inputs</span></code>
+and <code class="docutils literal notranslate"><span class="pre">weights</span></code> by substituting the <code class="docutils literal notranslate"><span class="pre">inputs</span></code> and <code class="docutils literal notranslate"><span class="pre">param_vals</span></code> in the
+appropriate places.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.hybrid_function.HybridFunction.set_input_param_order">
+<span class="sig-name descname"><span class="pre">set_input_param_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_params</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/hybrid_function.html#HybridFunction.set_input_param_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction.set_input_param_order" title="Link to this definition">¶</a></dt>
+<dd><p>Use a list of lists of <code class="docutils literal notranslate"><span class="pre">input_params</span></code> to specify the order in which
+input parameters should be considered for function evaluation and for
+computing partial derivatives to form the gradient vector.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.hybrid_function.HybridFunction.set_trainable_weight_order">
+<span class="sig-name descname"><span class="pre">set_trainable_weight_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weights</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/hybrid_function.html#HybridFunction.set_trainable_weight_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction.set_trainable_weight_order" title="Link to this definition">¶</a></dt>
+<dd><p>Use a list of trainable <code class="docutils literal notranslate"><span class="pre">weights</span></code> to specify the order in which the
+trainable ansatz weights should be considered for function evaluation
+and when computing partial derivatives to form the gradient vector.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-ionqvision.quantum_function_category.quantum_function_torch_wrappers">
+<span id="pytorch-wrappers"></span><h2>PyTorch wrappers<a class="headerlink" href="#module-ionqvision.quantum_function_category.quantum_function_torch_wrappers" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ionqvision.quantum_function_category.quantum_function_torch_wrappers.</span></span><span class="sig-name descname"><span class="pre">AutogradQuantumFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function_torch_wrappers.html#AutogradQuantumFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></p>
+<p>A class to model quantum functions that are trainable with PyTorch.
+This class is mostly a wrapper for <a class="reference internal" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction" title="ionqvision.quantum_function_category.hybrid_function.HybridFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">HybridFunction</span></code></a> that sets up
+the <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.forward" title="ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.forward"><code class="xref py py-meth docutils literal notranslate"><span class="pre">forward()</span></code></a> and <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.backward" title="ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.backward"><code class="xref py py-meth docutils literal notranslate"><span class="pre">backward()</span></code></a> methods expected by <code class="docutils literal notranslate"><span class="pre">torch</span></code>; in
+other words, this class registers the evaluation of a
+<a class="reference internal" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction" title="ionqvision.quantum_function_category.hybrid_function.HybridFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">HybridFunction</span></code></a> in the <code class="docutils literal notranslate"><span class="pre">autograd</span></code> framework.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This class is <em>not</em> meant to be used directly; use
+<a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.TorchQuantumFunction" title="ionqvision.quantum_function_category.quantum_function_torch_wrappers.TorchQuantumFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">TorchQuantumFunction</span></code></a> or <code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleQuantumLayer</span></code> instead.</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.backward">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_output</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function_torch_wrappers.html#AutogradQuantumFunction.backward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.backward" title="Link to this definition">¶</a></dt>
+<dd><p>Define a formula for differentiating the operation with backward mode automatic differentiation.</p>
+<p>This function is to be overridden by all subclasses.
+(Defining this function is equivalent to defining the <code class="docutils literal notranslate"><span class="pre">vjp</span></code> function.)</p>
+<p>It must accept a context <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx</span></code> as the first argument, followed by
+as many outputs as the <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.forward" title="ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> returned (None will be passed in
+for non tensor outputs of the forward function),
+and it should return as many tensors, as there were inputs to
+<a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.forward" title="ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a>. Each argument is the gradient w.r.t the given output,
+and each returned value should be the gradient w.r.t. the
+corresponding input. If an input is not a Tensor or is a Tensor not
+requiring grads, you can just pass None as a gradient for that input.</p>
+<p>The context can be used to retrieve tensors saved during the forward
+pass. It also has an attribute <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx.needs_input_grad</span></code> as a tuple
+of booleans representing whether each input needs gradient. E.g.,
+<a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.backward" title="ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.backward"><code class="xref py py-func docutils literal notranslate"><span class="pre">backward()</span></code></a> will have <code class="docutils literal notranslate"><span class="pre">ctx.needs_input_grad[0]</span> <span class="pre">=</span> <span class="pre">True</span></code> if the
+first input to <a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.forward" title="ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward()</span></code></a> needs gradient computed w.r.t. the
+output.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.forward">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function_torch_wrappers.html#AutogradQuantumFunction.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.forward" title="Link to this definition">¶</a></dt>
+<dd><p>Define the forward of the custom autograd Function.</p>
+<p>This function is to be overridden by all subclasses.
+There are two ways to define forward:</p>
+<p>Usage 1 (Combined forward and ctx):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>It must accept a context ctx as the first argument, followed by any
+number of arguments (tensors or other types).</p></li>
+<li><p>See <span class="xref std std-ref">combining-forward-context</span> for more details</p></li>
+</ul>
+<p>Usage 2 (Separate forward and ctx):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">setup_context</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">inputs</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">output</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The forward no longer accepts a ctx argument.</p></li>
+<li><p>Instead, you must also override the <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.setup_context()</span></code>
+staticmethod to handle setting up the <code class="docutils literal notranslate"><span class="pre">ctx</span></code> object.
+<code class="docutils literal notranslate"><span class="pre">output</span></code> is the output of the forward, <code class="docutils literal notranslate"><span class="pre">inputs</span></code> are a Tuple of inputs
+to the forward.</p></li>
+<li><p>See <span class="xref std std-ref">extending-autograd</span> for more details</p></li>
+</ul>
+<p>The context can be used to store arbitrary data that can be then
+retrieved during the backward pass. Tensors should not be stored
+directly on <cite>ctx</cite> (though this is not currently enforced for
+backward compatibility). Instead, tensors should be saved either with
+<code class="xref py py-func docutils literal notranslate"><span class="pre">ctx.save_for_backward()</span></code> if they are intended to be used in
+<code class="docutils literal notranslate"><span class="pre">backward</span></code> (equivalently, <code class="docutils literal notranslate"><span class="pre">vjp</span></code>) or <code class="xref py py-func docutils literal notranslate"><span class="pre">ctx.save_for_forward()</span></code>
+if they are intended to be used for in <code class="docutils literal notranslate"><span class="pre">jvp</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.setup_context">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">setup_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function_torch_wrappers.html#AutogradQuantumFunction.setup_context"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.setup_context" title="Link to this definition">¶</a></dt>
+<dd><p>There are two ways to define the forward pass of an autograd.Function.</p>
+<p>Either:</p>
+<ol class="arabic simple">
+<li><p>Override forward with the signature <code class="docutils literal notranslate"><span class="pre">forward(ctx,</span> <span class="pre">*args,</span> <span class="pre">**kwargs)</span></code>.
+<code class="docutils literal notranslate"><span class="pre">setup_context</span></code> is not overridden. Setting up the ctx for backward
+happens inside the <code class="docutils literal notranslate"><span class="pre">forward</span></code>.</p></li>
+<li><p>Override forward with the signature <code class="docutils literal notranslate"><span class="pre">forward(*args,</span> <span class="pre">**kwargs)</span></code> and
+override <code class="docutils literal notranslate"><span class="pre">setup_context</span></code>. Setting up the ctx for backward happens
+inside <code class="docutils literal notranslate"><span class="pre">setup_context</span></code> (as opposed to inside the <code class="docutils literal notranslate"><span class="pre">forward</span></code>)</p></li>
+</ol>
+<p>See <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.forward()</span></code> and <span class="xref std std-ref">extending-autograd</span> for more details.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function_torch_wrappers.QuantumModule">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ionqvision.quantum_function_category.quantum_function_torch_wrappers.</span></span><span class="sig-name descname"><span class="pre">QuantumModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantum_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shots</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function_torch_wrappers.html#QuantumModule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.QuantumModule" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code></p>
+<p>A PyTorch <code class="docutils literal notranslate"><span class="pre">nn.Module</span></code> that implements the execution of any
+<code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumObjective</span></code> using the <code class="docutils literal notranslate"><span class="pre">autograd</span></code> engine.</p>
+<p>This allows the <code class="docutils literal notranslate"><span class="pre">autograd</span></code> engine to automatically differentiate
+the quantum objective using the parameter-shift rule.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function_torch_wrappers.QuantumModule.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function_torch_wrappers.html#QuantumModule.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.QuantumModule.forward" title="Link to this definition">¶</a></dt>
+<dd><p>Define the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ionqvision.quantum_function_category.quantum_function_torch_wrappers.TorchQuantumFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ionqvision.quantum_function_category.quantum_function_torch_wrappers.</span></span><span class="sig-name descname"><span class="pre">TorchQuantumFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quantum_function</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shots</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/ionqvision/quantum_function_category/quantum_function_torch_wrappers.html#TorchQuantumFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.TorchQuantumFunction" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction" title="ionqvision.quantum_function_category.hybrid_function.HybridFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">HybridFunction</span></code></a></p>
+<p>A convenience class provided to call a quantum function that has been wrapped
+as a <code class="docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code>.</p>
+</dd></dl>
+
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="utils.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Some useful helper methods</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="observables.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Qubit observables</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, IonQ
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Quantum Functions</a><ul>
+<li><a class="reference internal" href="#module-ionqvision.quantum_function_category.quantum_function">Quantum function category</a><ul>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction"><code class="docutils literal notranslate"><span class="pre">QuantumFunction</span></code></a><ul>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction._fun"><code class="docutils literal notranslate"><span class="pre">QuantumFunction._fun()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction._fun_symb"><code class="docutils literal notranslate"><span class="pre">QuantumFunction._fun_symb()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction._grad"><code class="docutils literal notranslate"><span class="pre">QuantumFunction._grad()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction._prepare_quantum_execution_fun"><code class="docutils literal notranslate"><span class="pre">QuantumFunction._prepare_quantum_execution_fun()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction._prepare_quantum_execution_grad"><code class="docutils literal notranslate"><span class="pre">QuantumFunction._prepare_quantum_execution_grad()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.ansatz"><code class="docutils literal notranslate"><span class="pre">QuantumFunction.ansatz</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun"><code class="docutils literal notranslate"><span class="pre">QuantumFunction.fun()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.fun_symb"><code class="docutils literal notranslate"><span class="pre">QuantumFunction.fun_symb()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.get_param_order"><code class="docutils literal notranslate"><span class="pre">QuantumFunction.get_param_order()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.grad"><code class="docutils literal notranslate"><span class="pre">QuantumFunction.grad()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.grad_symb"><code class="docutils literal notranslate"><span class="pre">QuantumFunction.grad_symb()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.is_differentiable"><code class="docutils literal notranslate"><span class="pre">QuantumFunction.is_differentiable</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function.QuantumFunction.set_param_order"><code class="docutils literal notranslate"><span class="pre">QuantumFunction.set_param_order()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-ionqvision.quantum_function_category.hybrid_function">Hybrid functions</a><ul>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction"><code class="docutils literal notranslate"><span class="pre">HybridFunction</span></code></a><ul>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction.ansatz"><code class="docutils literal notranslate"><span class="pre">HybridFunction.ansatz</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction.fun"><code class="docutils literal notranslate"><span class="pre">HybridFunction.fun()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction.fun_symb"><code class="docutils literal notranslate"><span class="pre">HybridFunction.fun_symb()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction.get_input_params"><code class="docutils literal notranslate"><span class="pre">HybridFunction.get_input_params()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction.get_trainable_weights"><code class="docutils literal notranslate"><span class="pre">HybridFunction.get_trainable_weights()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction.grad"><code class="docutils literal notranslate"><span class="pre">HybridFunction.grad()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction.set_input_param_order"><code class="docutils literal notranslate"><span class="pre">HybridFunction.set_input_param_order()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.hybrid_function.HybridFunction.set_trainable_weight_order"><code class="docutils literal notranslate"><span class="pre">HybridFunction.set_trainable_weight_order()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-ionqvision.quantum_function_category.quantum_function_torch_wrappers">PyTorch wrappers</a><ul>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction"><code class="docutils literal notranslate"><span class="pre">AutogradQuantumFunction</span></code></a><ul>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.backward"><code class="docutils literal notranslate"><span class="pre">AutogradQuantumFunction.backward()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.forward"><code class="docutils literal notranslate"><span class="pre">AutogradQuantumFunction.forward()</span></code></a></li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.AutogradQuantumFunction.setup_context"><code class="docutils literal notranslate"><span class="pre">AutogradQuantumFunction.setup_context()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.QuantumModule"><code class="docutils literal notranslate"><span class="pre">QuantumModule</span></code></a><ul>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.QuantumModule.forward"><code class="docutils literal notranslate"><span class="pre">QuantumModule.forward()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#ionqvision.quantum_function_category.quantum_function_torch_wrappers.TorchQuantumFunction"><code class="docutils literal notranslate"><span class="pre">TorchQuantumFunction</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=4e2eecee"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]]}})</script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]]}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </body>
+</html>
